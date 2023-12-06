@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dApi_name">Từ Điển API</string>
+    <string name="dInstruction">Hướng dẫn:</string>
+    <string name="dHelp">1. Điền từ vào ô trống và bấm Tìm để tìm định nghĩa.  2. Bấm Xem từ đã lưu để lưu và xem những từ đã lưu.</string>
+    <string name="saveBtnText">Xem từ đã lưu</string>
+    <string name="search">Tìm Kiếm</string>
+    <string name="DeleteUpdatelocationTitle">Xóa hoặc cập nhật</string>
+    <string name="DeleteUpdatelocationQuestion">Muốn làm gì nữa?</string>
+    <string name="Delete">Xóa</string>
+    <string name="backToMainFromFavText">Trở về</string>
+
+</resources>

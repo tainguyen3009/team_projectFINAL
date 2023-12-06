@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">team_project</string>
+    <string name="dApi_name" translatable="false">Dictionary API</string>;
+    <string name="dInstruction" translatable="false">Instructions:</string>
+    <string name="dHelp" translatable="false">1. Enter a word in the search box and click "Search" to get definitions. \n2. Click "View Saved" to save definition and view the saved definitions.</string>
+    <string name="saveBtnText" translatable="false"> Save location </string>
+    <string name="search" translatable="false">Search</string>
+    <string name="DeleteUpdatelocationTitle" translatable="false"> Delete/Update location </string>
+    <string name="DeleteUpdatelocationQuestion" translatable="false"> What do you like to do? </string>
+    <string name="Delete" translatable="false"> Delete </string>
+    <string name="backToMainFromFavText" translatable="false"> Back to Main </string>
+
 </resources>

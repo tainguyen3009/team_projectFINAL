@@ -1,0 +1,22 @@
+<!-- item_definition_show.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/wordText"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:shadowColor="#1E1B1B"
+        android:text="Word:"
+        android:textColor="#FA0C0C"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/definitionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Definition:" />
+</LinearLayout>
