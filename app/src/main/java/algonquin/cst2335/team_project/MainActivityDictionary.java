@@ -40,6 +40,10 @@ import java.util.List;
 
 import algonquin.cst2335.team_project.databinding.ActivityMainDictionaryBinding;
 
+/**
+ * MainActivityDictionary is the main activity for the dictionary feature of the application.
+ * It allows users to search for word definitions and view/save the results.
+ */
 public class MainActivityDictionary extends AppCompatActivity {
     private EditText wordToFind;
     private Button buttonSearch;
@@ -55,6 +59,13 @@ public class MainActivityDictionary extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private static final String LAST_SEARCHED_WORD_KEY = "last_searched_word";
 
+    /**
+     * Called when the activity is first created.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +114,9 @@ public class MainActivityDictionary extends AppCompatActivity {
 
     }
 
+    /**
+     * Shows a help dialog providing information about the dictionary feature.
+     */
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Help");
@@ -112,6 +126,11 @@ public class MainActivityDictionary extends AppCompatActivity {
         builder.show();
     }
 
+    /**
+     * Fetches the definition of a given word from the API and updates the UI accordingly.
+     *
+     * @param word The word to fetch the definition for.
+     */
     private void fetchWord(String word) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String apiUrl = buildUrl(word);
@@ -196,24 +215,49 @@ public class MainActivityDictionary extends AppCompatActivity {
         });
     }
 
+    /**
+     * Builds the API URL for fetching word definitions.
+     *
+     * @param word The word to include in the URL.
+     * @return The constructed API URL.
+     */
     private String buildUrl(String word) {
         return String.format("https://api.dictionaryapi.dev/api/v2/entries/en/%s", word);
     }
 
+    /**
+     * DefinitionAdapter is the RecyclerView adapter for displaying word definitions.
+     */
     public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.DefinitionViewHolder> {
         private List<SavedTerms> definitions;
         private AdapterView.OnItemClickListener clickListener;
 
+        /**
+         * Constructor for DefinitionAdapter.
+         */
         public DefinitionAdapter() {
             definitions = new ArrayList<>();
         }
 
+        /**
+         * Sets the definitions list with a new list of definitions and notifies the adapter of the change.
+         *
+         * @param newDefinitions The new list of definitions to set.
+         */
         public void addAllDefinitions(List<SavedTerms> newDefinitions) {
             definitions.clear();
             definitions.addAll(newDefinitions);
             notifyDataSetChanged();
         }
 
+        /**
+         * Called when RecyclerView needs a new ViewHolder of the given type to represent an item.
+         *
+         * @param parent   The ViewGroup into which the new View will be added after it is bound to
+         *                 an adapter position.
+         * @param viewType The view type of the new View.
+         * @return
+         */
         @NonNull
         @Override
         public DefinitionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -221,25 +265,49 @@ public class MainActivityDictionary extends AppCompatActivity {
             return new DefinitionViewHolder(view);
         }
 
+        /**
+         * Called by RecyclerView to display the data at the specified position.
+         * @param holder   The ViewHolder which should be updated to represent the contents of the
+         *                 item at the given position in the data set.
+         * @param position The position of the item within the adapter's data set.
+         */
         @Override
         public void onBindViewHolder(@NonNull DefinitionViewHolder holder, int position) {
             SavedTerms definition = definitions.get(position);
             holder.bind(definition);
         }
 
+        /**
+         * Returns the total number of items in the data set held by the adapter.
+         *
+         * @return The total number of items in this adapter.
+         */
         @Override
         public int getItemCount() {
             return definitions.size();
         }
 
+        /**
+         * DefinitionViewHolder is the RecyclerView ViewHolder for individual word definitions.
+         */
         class DefinitionViewHolder extends RecyclerView.ViewHolder {
             private TextView textViewDefinition;
 
+            /**
+             * Constructor for DefinitionViewHolder.
+             *
+             * @param itemView The view representing an item in the RecyclerView.
+             */
             public DefinitionViewHolder(@NonNull View itemView) {
                 super(itemView);
                 textViewDefinition = itemView.findViewById(R.id.textViewDefinition);
             }
 
+            /**
+             * Binds the provided definition to the ViewHolder, updating the UI.
+             *
+             * @param definition The definition to bind.
+             */
             public void bind(SavedTerms definition) {
                 textViewDefinition.setText(definition.getDefinition());
             }

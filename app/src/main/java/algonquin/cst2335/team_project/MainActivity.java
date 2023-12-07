@@ -14,9 +14,22 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+/**
+ * The main activity of the application, providing navigation to the dictionary feature.
+ *
+ * @author Tai Nguyen
+ * 04086103
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Called when the activity is first created.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Styles the given TextView by changing text color, size, and applying bold style.
+     *
+     * @param textView The TextView to style.
+     */
     private void styleText(TextView textView) {
         textView.setTextColor(Color.RED);
         textView.setTextSize(14);  // Change the text size
@@ -39,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Rotates the given ImageView continuously.
+     *
+     * @param image The ImageView to rotate.
+     */
     private void rotateElements(ImageView image) {
         RotateAnimation anim = new RotateAnimation(0f, 270f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setInterpolator(new LinearInterpolator());
@@ -47,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         image.startAnimation(anim);
     }
 
+    /**
+     * Creates a flashing animation for the given ImageView.
+     *
+     * @param image The ImageView to flash.
+     */
     public void flashingAnimation(ImageView image) {
         // Create ObjectAnimator for alpha property
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(image, "alpha", 1f, 0f);
@@ -58,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
         alphaAnimator.start();
     }
 
+    /**
+     *  Creates a fly-in animation for the given ImageView.
+     *
+     *  @param view The ImageView to fly in.
+     */
     private void flyInAnimation(ImageView view) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", -18f, 0f);
         animator.setDuration(1000);
@@ -66,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
         animator.start();
     }
 
+    /**
+     * Creates a fly-out animation for the given View.
+     *
+     * @param view The View to fly out.
+     */
     private void flyOutAnimation(View view) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 18f, 0f);
         animator.setDuration(1000);
@@ -74,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
         animator.start();
     }
 
+    /**
+     * Chooses and applies a random animation for the given ImageView based on a generated random integer.
+     *
+     * @param view The ImageView to apply the animation.
+     */
     private void chooseAnimation(ImageView view) {
         RandomInteger Random = new RandomInteger();
         int RandomInteger = Random.generateRandomInt();

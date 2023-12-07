@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team_project"
         tools:targetApi="31">
+
         <activity android:name=".MainActivityDictionary"/>
+        <activity android:name=".DictionaryViewTerms" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

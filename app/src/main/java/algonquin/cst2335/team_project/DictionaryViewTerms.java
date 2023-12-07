@@ -21,7 +21,9 @@ import java.util.concurrent.Executors;
 
 import algonquin.cst2335.team_project.databinding.ActivityDictionaryViewTermsBinding;
 
-
+/**
+ * Activity for displaying and managing saved dictionary terms.
+ */
 public class DictionaryViewTerms extends AppCompatActivity {
 
 
@@ -80,8 +82,19 @@ public class DictionaryViewTerms extends AppCompatActivity {
     }
 
     // Your existing DictionaryAdapter class
+
+    /**
+     * RecyclerView Adapter for displaying saved dictionary terms.
+     */
     class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.MyRowHolder> {
 
+        /**
+         *  Called when RecyclerView needs a new ViewHolder of the given type to represent an item.
+         * @param parent   The ViewGroup into which the new View will be added after it is bound to
+         *                 an adapter position.
+         * @param viewType The view type of the new View.
+         * @return A new ViewHolder that holds a View of the given view type.
+         */
         @NonNull
         @Override
         public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -89,6 +102,12 @@ public class DictionaryViewTerms extends AppCompatActivity {
             return new MyRowHolder(itemView);
         }
 
+        /**
+         * Called by RecyclerView to display the data at the specified position.
+         * @param holder   The ViewHolder which should be updated to represent the contents of the
+         *                 item at the given position in the data set.
+         * @param position The position of the item within the adapter's data set.
+         */
         @Override
         public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
             SavedTerms savedTerm = savedTerms.get(position);
@@ -99,16 +118,29 @@ public class DictionaryViewTerms extends AppCompatActivity {
             holder.itemView.setOnClickListener(view -> deleteOrUpdate(position));
         }
 
+        /**
+         * Returns the total number of items in the data set held by the adapter.
+         *
+         * @return The total number of items in this adapter.
+         */
         @Override
         public int getItemCount() {
             return savedTerms.size();
         }
 
+        /**
+         * ViewHolder class for holding the views of each item in the RecyclerView.
+         */
         class MyRowHolder extends RecyclerView.ViewHolder {
 
             public TextView word;
             public TextView definition;
 
+            /**
+             * Constructor for MyRowHolder.
+             *
+             * @param itemView The view representing an item in the RecyclerView.
+             */
             public MyRowHolder(@NonNull View itemView) {
                 super(itemView);
                 word = itemView.findViewById(R.id.wordText);
@@ -117,6 +149,11 @@ public class DictionaryViewTerms extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displays an alert dialog for confirming deletion or update of a saved term.
+     *
+     *  @param position The position of the item in the list.
+     */
     private void deleteOrUpdate(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.DeleteUpdatelocationTitle));
@@ -131,6 +168,12 @@ public class DictionaryViewTerms extends AppCompatActivity {
         builder.show();
     }
 
+
+    /**
+     * Deletes a saved term from the list and the database.
+     *
+     * @param position The position of the item in the list.
+     */
     private void delete(int position) {
         SavedTerms deletedTerm = savedTerms.get(position); // Make a copy
         savedTerms.remove(position);
@@ -141,4 +184,5 @@ public class DictionaryViewTerms extends AppCompatActivity {
             dicDao.delete(deletedTerm);
         });
     }
+
 }
